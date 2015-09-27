@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'dpdemoII.spiders'
 
 ITEM_PIPELINES = {
 
-    'dpdemoII.pipelines.DuplicatesPipeline': 299,
+    #'dpdemoII.pipelines.DuplicatesPipeline': 299,
     'dpdemoII.pipelines.DpdemoPipeline': 300
 }
 
@@ -25,19 +25,21 @@ DOWNLOADER_MIDDLEWARES = {
     'dpdemoII.misc.middleware.CustomUserAgentMiddleware': 401,
 }
 
-DOWNLOAD_DELAY = 6 #250ms
+DOWNLOAD_DELAY = 4 #250ms
 COOKIES_ENABLED = False
-CONCURRENT_REQUESTS= 2
+CONCURRENT_REQUESTS= 4
 
-DEPTH_LIMIT = 2  #just spider clothes
+DEPTH_LIMIT = 3  #just spider clothes
 HTTPERROR_ALLOWED_CODES=[403] #spider was forbidden
 CRAWLSPIDER_FOLLOW_LINKS=True
+
+DUPEFILTER_CLASS = "dpdemoII.misc.BloomDupFilter.BloomDupeFilter"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'dpdemo (+http://www.yourdomain.com)'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS=32
+#CONCURRENT_REQUESTS=32htuk,,jj vvgg
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay

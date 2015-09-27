@@ -9,6 +9,7 @@ import json
 import codecs
 
 from scrapy.exceptions import DropItem
+from pybloomfilter import BloomFilter
 
 import codecs
 import json

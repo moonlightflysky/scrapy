@@ -47,8 +47,13 @@ class DianpingSpider(CrawlSpider):
 
     def parse_shop_list(self, response):
         shop_urls = response.xpath('//*[@id="shop-all-list"]/ul/li/div[2]/div[1]/a[1]/@href').extract()
+        page_urls = response.xpath('//html/body[@id="top"]/div[@class ="section Fix"]/div[@class ="content-wrap"]/div[@class ="shop-wrap"]/div[@class ="page"]/a[@class = "PageLink"]/@href').extract()
         for url in shop_urls:
             yield Request(self.website + url.encode("utf8"), cookies={'cye': 'xian'}, callback=self.parse_shop)
+
+        for url2 in page_urls:
+            yield Request(self.website + url.encode("utf8"), cookies={'cye': 'xian'}, callback=self.parse_shop_list)
+
 
     def parse_shop(self, response):
         shop = ShopsItem()
